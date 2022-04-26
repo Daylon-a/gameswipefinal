@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en-US">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title> Registration </title>
+        <link rel="stylesheet" href="{%static 'css/style.css'%}"}>
+        
+        <style>
+            /*add full-width input fields*/
+     
+            input[type=text],
+            input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 2px solid #ccc;
+            box-sizing: border-box;
+            }
+            /* set a style for all buttons*/
+     
+            button {
+            background-color: #A2960C;
+            color: white;
+            padding: 15px 20px;
+            font-size: 18px;
+            margin: 8px 0;
+            cursor: pointer;
+            width: 100%;
+            }
+            /*set styles for the cancel button*/
+     
+            .cancelbtn {
+            font-size: 18px;
+            padding: 15px 20px;
+            background-color: #FF2E00;
+            }
+            /*float cancel and signup buttons and add an equal width*/
+     
+            .cancelbtn,
+            .signupbtn {
+            float: left;
+            width: 50%;
+            border-radius: 30px;
+            }
+
+            .cancelbtn:hover, .signupbtn:hover {
+                color: black;
+            }
+            /*add padding to container elements*/
+     
+            .container {
+            padding: 16px;
+            }
+            /*clear floats*/
+     
+            .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+            }
+            /*styles for cancel button and signup button
+            on extra small screens*/
+     
+            @media screen and (max-width: 300px) {
+            .cancelbtn,
+            .signupbtn {
+            width: 100%;
+            }
+            }
+        </style>
+    
+    </head>
+    
+    <body>
+        <div class="Registration-div">
+            <div class="title" style="margin-bottom: 30px;"> Register </div>
+            <form action="/signup" method="post">
+                {% csrf_token %}
+                <div class="container">
+                    
+                    <div class="registration-username">
+                        <label for=""><b> Username </b></label>
+                        <input type="text" id="username" name="username" placeholder="Create a Username (only letters and numbers)" required>
+                    </div>
+
+                    <div class="registration-email">
+                        <label for=""><b> Email Address </b></label>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                    </div>
+
+                    <div class="password">
+                        <label for=""><b> Password </b></label>
+                        <input type="password" id="pass1" name="pass1" placeholder="Enter Password" required>
+                    </div>
+                    
+                    <div class="password">
+                    <label for=""><b> Repeat Password </b></label>
+                    <input type="password" id="pass2" name="pass2" placeholder="Repeat Password" required>
+                    <input type="checkbox" checked="checked"> Remember me
+                    </div>
+
+                    <p style="color:#fff; text-align: center ;">To create an account you have to agree our <a href="#">Terms & Privacy</a>.</p>
+ 
+                    <div class="clearfix">
+                    <button type="button" class="cancelbtn">Cancel</button>
+                    <button type="submit" class="signupbtn">Lets Go!</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

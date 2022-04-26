@@ -33,6 +33,15 @@
           font-size: 3.5rem;
         }
       }
+
+      #loginbutton, #registerbutton {
+        display: inline-block;
+        width: 25%;
+        background-color: #454887;
+        margin-top: 60px;
+        padding-left: 30px;
+        margin-left: 325px;
+      }
     </style>
 
 
@@ -72,6 +81,15 @@
 </header>
 
 <main>
+  {% for message in messages %}
+  <div class="alert alert-{{message.tags}} alert-dismissable fade show" role="alert">
+  <strong> Message: </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="True">&times;</span>
+  </button>
+  </div>
+  {% endfor %}
+
   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -84,7 +102,11 @@
 
         <div class="container">
           <div class="carousel-caption text-start">
+            {% if user.is_authenticated %}
+            <h1> {{username}}, <span class="mySPAN">Welcome to GameSwipe!</span></h1>
+            {% else %}
             <h1> Welcome to <span class="mySPAN">GameSwipe!</span></h1>
+            {% endif %}
             <p hidden><a class="btn btn-lg btn-primary" href="LoginPage.html"> Get Started! </a></p>
           </div>
         </div>
@@ -198,7 +220,14 @@
       </div>
     </div>
 
-    <a class="btn btn-primary btn-lg btn-block" href="login" role="button" style="width: 50%; margin-left: 25%; margin-top: 60px; background-color: #454887;"> Lets Go! </a>
+    {% if user.is_authenticated %}
+    <a class="btn btn-primary btn-lg btn-block" id="registerbutton" href="/main" role="button" type="button"> To The Queue! </a>
+    <a class="btn btn-primary btn-lg btn-block" id="loginbutton" href="/signout" role="button" type="submit"> Signout </a>
+    {% else %}
+    <a class="btn btn-primary btn-lg btn-block" id="registerbutton" href="/signup" role="button" type="submit"> Sign Up </a>
+    <a class="btn btn-primary btn-lg btn-block" id="loginbutton" href="/signin" role="button" type="submit"> Login! </a>
+    {% endif %}
+
 <!--LoginPage.html-->
     <hr class="featurette-divider">
 
