@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'gameswipefinal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gameswipefinal',
+        'NAME': 'GameSwipe',
         'USER': 'Daylon',
         'HOST': 'restapiserver.postgres.database.azure.com',
         'PASSWORD': 'Dkad06college!',
