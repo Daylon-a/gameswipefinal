@@ -13,9 +13,6 @@ def signup(request):
         email = request.POST['email']
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
-
-        
-
         myuser = User.objects.create_user(username, email, pass1)
         myuser.save()
 
@@ -25,7 +22,6 @@ def signup(request):
     return render(request, 'signup.html')
 
 def signin(request):
-
     if request.method == 'POST':
         username = request.POST['username']
         pass1 = request.POST['pass1']
@@ -39,11 +35,9 @@ def signin(request):
         else:
             messages.error(request, "Incorrect Credentials!")
             return redirect('home')
-
     return render(request, 'signin.html')
 
 def signout(request):
-
     logout(request)
     messages.success(request, "Logged Out Successfully!")
     return redirect('home')

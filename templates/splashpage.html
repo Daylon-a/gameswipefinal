@@ -67,14 +67,24 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Community</a>
           </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link disabled">Creator Dashboard</a>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link disabled">Contact us!</a>
           </li>
+          {% endif %}
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        {% if user.is_authenticated %}
+        <h3> {{user.get_username}} </h3>
+        <img src="{%static 'img/profileicon.jpg '%}" width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="background-image: url('profileicon.jpg'); border-radius: 50%; margin-left: 10px"></svg>
+        <button type="submit" class="btn btn-danger" value="Logout" style="margin-left: 20px; background-color:#6f42c1";><a href="/signout"> Logout </a></button> 
+        {% else %}
+        <h3> Guest </h3>
+        <img src="{%static 'img/anonymous.jpg' %}"  width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="background-color:white; border-radius: 40%; margin-left: 10px"></svg>
+        <button type="submit" class="btn btn-danger" value="Logout" style="margin-left: 20px; background-color:#59c9fc";><a href="/signin"> Login </a></button> 
+        {% endif %}
       </div>
     </div>
   </nav>
