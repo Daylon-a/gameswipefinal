@@ -53,7 +53,7 @@ body {
   from {color: #F0E5E5;}
   to {color: #a299c2;}
 }
-/* Declare heights because of positioning of img element */
+/* Declare heights because of positioning of img element: standard 32rem*/
 .carousel-item {
   height: 32rem;
 }
