@@ -15,8 +15,6 @@ def mainpage(request):
     print('enter if statement')
     system = request.POST.get('genrebutton', None)
     
-    
-    
     if request.method == 'POST' and system == "RPG":
         print('the RPG only request has been satisfied ;)')
         username = request.user.get_username()

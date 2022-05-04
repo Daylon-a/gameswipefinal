@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('gamecarousel.urls')),
     path('', include('authentication.urls')),
     path('main/', include('gamecarousel.urls')),
+    path('community/', include('gameswipecomments.urls')),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

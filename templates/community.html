@@ -1,0 +1,84 @@
+<!doctype html>
+<{% load static %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>GameSwipe | Community </title>
+  </head>
+ 
+  
+  <body> 
+    <!-- Navbar starts here -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#"> GameSwipe | Blog </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'splashpage' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Community</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link disabled">Creator Dashboard</a>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link disabled">Contact us!</a>
+                </li>
+                {% endif %}
+              </ul>
+              {% if user.is_authenticated %}
+              <div class="username&login" style="display:flex; justify-content:flex-end; margin-left: auto;">
+              <h3 style="color: white;"> {{user.get_username}} </h3>
+              <img src="{%static 'img/profileicon.jpg '%}" width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="background-image: url('profileicon.jpg'); border-radius: 50%; margin-left: 10px"></svg>
+              <button type="submit" class="btn btn-danger" value="Logout" style="margin-left: 20px; background-color:#6f42c1";><a href="/signout"> Logout </a></button> 
+              {% else %}
+              <div class="username&login" style="display:flex; justify-content:flex-end; margin-left: auto;">
+              <h3 style="color: white;"> Guest </h3>
+              <img src="{%static 'img/anonymous.jpg' %}"  width="40px" height="40px" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false" style="background-color:white; border-radius: 40%; margin-left: 10px"></svg>
+              <button type="submit" class="btn btn-danger" value="Login" style="margin-left: 20px; background-color:#59c9fc";><a href="/signin"> Login </a></button> 
+              {% endif %}
+            </div>
+            </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <!-- Navbar ends here -->
+    <br>
+    <br>
+    <div class="container">
+    <h1> Welcome to the community page </h1>
+    <a href="{% url 'add_post' %}" style="color: green;"> Add a Post </a>
+    <h2> Posts </h2>
+    {% for post in object_list %}
+    <a href="{% url 'article-detail' post.pk %}"><h3>{{post.title}}</h3></a>
+    <h4>{{post.author}} | <a href="{% url 'update_post' post.pk %}">(Edit)</a> | <a href="{% url 'delete_post' post.pk %}"> delete </a></h4>
+    <br>
+    <p> {{post.body}}</p>
+    {% endfor %}
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>
